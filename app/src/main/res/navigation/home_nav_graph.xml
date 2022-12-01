@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ir.amirhparhizgar.snappboxtask.HomeFragment"
+        android:name="ir.amirhparhizgar.snappboxtask.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/requestFragment"
-        android:name="ir.amirhparhizgar.snappboxtask.RequestFragment"
+        android:name="ir.amirhparhizgar.snappboxtask.ui.RequestFragment"
         android:label="fragment_request"
         tools:layout="@layout/fragment_request" />
 </navigation>

@@ -1,4 +1,4 @@
-package ir.amirhparhizgar.snappboxtask
+package ir.amirhparhizgar.snappboxtask.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import ir.amirhparhizgar.snappboxtask.databinding.FragmentHomeBinding
+import ir.amirhparhizgar.snappboxtask.presentation.RequestViewModel
 
 @AndroidEntryPoint
 class RequestFragment : Fragment() {
