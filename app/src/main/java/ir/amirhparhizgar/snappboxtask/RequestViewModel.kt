@@ -1,7 +1,11 @@
 package ir.amirhparhizgar.snappboxtask
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RequestViewModel : ViewModel() {
+@HiltViewModel
+class RequestViewModel @Inject constructor(savedStateHandle: SavedStateHandle) : ViewModel() {
 
 }
