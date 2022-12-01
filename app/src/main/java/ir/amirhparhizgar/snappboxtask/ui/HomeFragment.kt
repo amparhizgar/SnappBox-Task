@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.mapbox.maps.Style
 import dagger.hilt.android.AndroidEntryPoint
 import ir.amirhparhizgar.snappboxtask.databinding.FragmentHomeBinding
 import ir.amirhparhizgar.snappboxtask.presentation.HomeViewModel
@@ -24,6 +25,11 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS)
     }
 
     override fun onDestroyView() {

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SnappBoxTask</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYW1pcmhwYXJoaXpnYXIiLCJhIjoiY2xiNW9rNGZ3MDhvbjNvcXUwaWtpYWVueCJ9.8JGm4wXquwt4hWEsHxKfgA</string>
 </resources>
