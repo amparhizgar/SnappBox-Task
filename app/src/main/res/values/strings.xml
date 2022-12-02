@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">SnappBoxTask</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiYW1pcmhwYXJoaXpnYXIiLCJhIjoiY2xiNW9rNGZ3MDhvbjNvcXUwaWtpYWVueCJ9.8JGm4wXquwt4hWEsHxKfgA</string>
+    <string name="current_location_button_content_description">current location</string>
+    <string name="ok">Ok</string>
+    <string name="why_location_permission_required">In order to show your location on the map, we require location permission.\nconsider granting the permission for better experience..</string>
+    <string name="why_fine_location_permission_required">Fine location permission is required to improve location precision. Otherwise, the location will be shown as an approximation.</string>
+    <string name="not_now">Not Now</string>
+    <string name="yes">Yes</string>
 </resources>

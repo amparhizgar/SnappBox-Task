@@ -6,18 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:translationZ="2dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_current_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/current_location_button_content_description"
+            android:src="@drawable/ic_round_gps_fixed_24" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <com.mapbox.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        mapbox:mapbox_cameraTargetLat="35.7219"
-        mapbox:mapbox_cameraTargetLng="51.3347"
-        mapbox:mapbox_cameraZoom="10.0" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-    </FrameLayout>
+        mapbox:mapbox_cameraTargetLat="32.6763783"
+        mapbox:mapbox_cameraTargetLng="54.6991712"
+        mapbox:mapbox_cameraZoom="4.0" />
 </FrameLayout>

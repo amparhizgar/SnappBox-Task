@@ -61,6 +61,8 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     // map box
     implementation 'com.mapbox.maps:android:10.9.1'
+    //noinspection GradleDependency Do not update this dependency for map box compatibility
+    implementation("com.google.android.gms:play-services-location:18.0.0")
 
     // test dependencies
     testImplementation 'junit:junit:4.13.2'
