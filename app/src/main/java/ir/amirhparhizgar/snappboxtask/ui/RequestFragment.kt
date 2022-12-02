@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import ir.amirhparhizgar.snappboxtask.databinding.FragmentHomeBinding
+import ir.amirhparhizgar.snappboxtask.databinding.FragmentRequestBinding
 import ir.amirhparhizgar.snappboxtask.presentation.RequestViewModel
 
 @AndroidEntryPoint
 class RequestFragment : Fragment() {
 
     private val viewModel: RequestViewModel by viewModels()
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentRequestBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,7 +23,10 @@ class RequestFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentRequestBinding.inflate(inflater, container, false)
+        binding.tvPrice.doOnLayout {
+            binding.tvPrice.translationY = -binding.tvPrice.measuredHeight.toFloat() / 2
+        }
         return binding.root
     }
 

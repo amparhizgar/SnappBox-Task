@@ -7,4 +7,5 @@
     <string name="why_fine_location_permission_required">Fine location permission is required to improve location precision. Otherwise, the location will be shown as an approximation.</string>
     <string name="not_now">Not Now</string>
     <string name="yes">Yes</string>
+    <string name="button_price">35,000</string>
 </resources>
