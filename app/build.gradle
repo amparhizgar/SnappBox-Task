@@ -20,11 +20,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField 'String', "MapboxAccessToken", MAPBOX_DOWNLOADS_TOKEN
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "MapboxAccessToken", MAPBOX_DOWNLOADS_TOKEN
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -54,7 +59,12 @@ dependencies {
     // hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    // map box
+    implementation 'com.mapbox.maps:android:10.9.1'
+    //noinspection GradleDependency Do not update this dependency for map box compatibility
+    implementation("com.google.android.gms:play-services-location:18.0.0")
 
+    // test dependencies
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
