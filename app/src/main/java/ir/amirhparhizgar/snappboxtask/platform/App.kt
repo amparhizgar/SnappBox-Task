@@ -1,4 +1,4 @@
-package ir.amirhparhizgar.snappboxtask
+package ir.amirhparhizgar.snappboxtask.platform
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -1,4 +1,4 @@
-package ir.amirhparhizgar.snappboxtask.ui
+package ir.amirhparhizgar.snappboxtask.platform
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
