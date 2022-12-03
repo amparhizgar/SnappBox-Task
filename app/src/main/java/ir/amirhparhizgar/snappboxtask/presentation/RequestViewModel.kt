@@ -11,14 +11,11 @@ import javax.inject.Inject
 @HiltViewModel
 class RequestViewModel @Inject constructor(savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    val request: Request?
+    val request: Request
 
     init {
         val requestJson =
             RequestFragmentArgs.fromSavedStateHandle(savedStateHandle).extraRequestJson
-
-        request = if (requestJson != null) {
-            GsonBuilder().create().fromJson(requestJson, Request::class.java)
-        } else null
+        request = GsonBuilder().create().fromJson(requestJson, Request::class.java)
     }
 }

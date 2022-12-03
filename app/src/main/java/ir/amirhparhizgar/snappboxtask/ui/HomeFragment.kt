@@ -33,6 +33,7 @@ import com.mapbox.maps.plugin.logo.logo
 import com.mapbox.maps.plugin.scalebar.scalebar
 import dagger.hilt.android.AndroidEntryPoint
 import ir.amirhparhizgar.snappboxtask.R
+import ir.amirhparhizgar.snappboxtask.common.FLY_ANIMATION_DURATION
 import ir.amirhparhizgar.snappboxtask.common.collectWithinLifecycle
 import ir.amirhparhizgar.snappboxtask.databinding.FragmentHomeBinding
 import ir.amirhparhizgar.snappboxtask.presentation.HomeViewModel
@@ -137,7 +138,7 @@ class HomeFragment : Fragment() {
                 zoom(16.0)
             },
             mapAnimationOptions {
-                duration(2000)
+                duration(FLY_ANIMATION_DURATION)
             }
         )
         mapView.location.removeOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener)

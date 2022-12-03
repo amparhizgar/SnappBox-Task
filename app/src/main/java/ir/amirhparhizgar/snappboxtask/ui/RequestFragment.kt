@@ -20,6 +20,7 @@ import androidx.fragment.app.viewModels
 import com.mapbox.geojson.Point
 import com.mapbox.maps.EdgeInsets
 import com.mapbox.maps.Style
+import com.mapbox.maps.dsl.cameraOptions
 import com.mapbox.maps.extension.style.layers.properties.generated.IconAnchor
 import com.mapbox.maps.plugin.LocationPuck2D
 import com.mapbox.maps.plugin.PuckBearingSource
@@ -37,6 +38,9 @@ import com.mapbox.maps.plugin.logo.logo
 import com.mapbox.maps.plugin.scalebar.scalebar
 import dagger.hilt.android.AndroidEntryPoint
 import ir.amirhparhizgar.snappboxtask.R
+import ir.amirhparhizgar.snappboxtask.common.FLY_ANIMATION_DURATION
+import ir.amirhparhizgar.snappboxtask.common.toMapBoxPoint
+import ir.amirhparhizgar.snappboxtask.data.Destination
 import ir.amirhparhizgar.snappboxtask.databinding.DestinationLocatorBinding
 import ir.amirhparhizgar.snappboxtask.databinding.FragmentRequestBinding
 import ir.amirhparhizgar.snappboxtask.presentation.RequestViewModel
@@ -44,20 +48,10 @@ import ir.amirhparhizgar.snappboxtask.presentation.RequestViewModel
 @AndroidEntryPoint
 class RequestFragment : Fragment() {
 
-    companion object {
-        private const val EDGE_INSET: Double = 128.0
-        private const val ANIMATION_DURATION: Long = 800
-    }
-
     private val viewModel: RequestViewModel by viewModels()
     private var _binding: FragmentRequestBinding? = null
     private val binding get() = _binding!!
     private val mapView get() = binding.mapView
-    private val pointList = listOf(
-        Point.fromLngLat(25.16, 59.31),
-        Point.fromLngLat(19.16, 60.31),
-        Point.fromLngLat(16.16, 59.31)
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,17 +64,13 @@ class RequestFragment : Fragment() {
                 tvPrice.translationY = -tvPrice.measuredHeight.toFloat() / 2
             }
             list.adapter = DestinationsArrayAdapter(
-                arrayListOf(
-                    Destination(0, "Hello", 0f, 0f),
-                    Destination(1, "Yellow", 0f, 0f),
-                    Destination(2, "Blue", 0f, 0f)
-                ),
+                viewModel.request.destinations,
                 requireContext()
             )
             list.onItemClickListener =
                 AdapterView.OnItemClickListener { _, _, position: Int, _ ->
                     val destination = list.getItemAtPosition(position) as Destination
-                    // todo fly to destination
+                    setCameraBoundsToDestination(destination.point.toMapBoxPoint())
                 }
             fabAdjustCamera.setOnClickListener {
                 setCameraBoundsToDestinations()
@@ -97,20 +87,62 @@ class RequestFragment : Fragment() {
         return binding.root
     }
 
-    private fun FragmentRequestBinding.setCameraBoundsToDestinations() {
+    private fun setCameraBoundsToDestination(destination: Point) {
         mapView.getMapboxMap().flyTo(
-            mapView.getMapboxMap().cameraForCoordinates(
-                pointList,
-                EdgeInsets(EDGE_INSET, EDGE_INSET, EDGE_INSET, EDGE_INSET)
-            ),
-            animationOptions = MapAnimationOptions.mapAnimationOptions { duration(ANIMATION_DURATION) }
+            cameraOptions {
+                center(destination)
+                zoom(16.0)
+            },
+            MapAnimationOptions.mapAnimationOptions {
+                duration(FLY_ANIMATION_DURATION)
+            }
         )
+    }
+
+    private fun setCameraBoundsToDestinations() {
+        viewModel.request.let {
+            mapView.getMapboxMap().flyTo(
+                mapView.getMapboxMap().cameraForCoordinates(
+                    it.destinations.map { destination ->
+                        Point.fromLngLat(
+                            destination.point.lng,
+                            destination.point.lat
+                        )
+                    },
+                    EdgeInsets(300.0, 100.0, 900.0, 100.0)
+                ),
+                animationOptions = MapAnimationOptions.mapAnimationOptions {
+                    duration(FLY_ANIMATION_DURATION)
+                }
+            )
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMapBoxStyle()
         customizeMapBoxTools()
+        addDestinationsToMap()
+    }
+
+    private fun addDestinationsToMap() {
+        viewModel.request.destinations.map { it.point }.let {
+            it.forEachIndexed { index, point ->
+                if (index == 0)
+                    addDestinationToMap(
+                        bitmapFromDrawableRes(
+                            requireContext(),
+                            R.drawable.origin_locator
+                        )!!,
+                        point.toMapBoxPoint()
+                    )
+                else
+                    addDestinationToMap(
+                        getBitmapForDestination(index), point.toMapBoxPoint()
+                    )
+            }
+        }
     }
 
     private fun setMapBoxStyle() {
@@ -131,24 +163,8 @@ class RequestFragment : Fragment() {
                     puckBearingEnabled = true
                     puckBearingSource = PuckBearingSource.HEADING
                 }
-
-                pointList.forEachIndexed { index, point ->
-                    if (index == 0)
-                        addDestinationToMap(
-                            bitmapFromDrawableRes(
-                                requireContext(),
-                                R.drawable.origin_locator
-                            )!!,
-                            point
-                        )
-                    else
-                        addDestinationToMap(
-                            getBitmapForDestination(index), point
-                        )
-                }
-
-            }
-        )
+                setCameraBoundsToDestinations()
+            })
     }
 
     private fun customizeMapBoxTools() {

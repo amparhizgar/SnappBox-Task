@@ -4,6 +4,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import ir.amirhparhizgar.snappboxtask.data.Point
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.launch
@@ -11,6 +12,8 @@ import kotlinx.coroutines.launch
 /**
  * Created by AmirHossein Parhizgar on 12/2/2022.
  */
+
+typealias  MapBoxPoint = com.mapbox.geojson.Point
 
 fun <T> Flow<T>.collectWithinLifecycle(
     viewLifecycleOwner: LifecycleOwner,
@@ -21,4 +24,8 @@ fun <T> Flow<T>.collectWithinLifecycle(
             collect(flowCollector)
         }
     }
+}
+
+fun Point.toMapBoxPoint(): MapBoxPoint {
+    return MapBoxPoint.fromLngLat(lng, lat)
 }
