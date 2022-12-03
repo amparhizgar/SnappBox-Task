@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Point(
     @SerializedName("lng")
-    val lng: Float,
+    val lng: Double,
     @SerializedName("lat")
-    val lat: Float
+    val lat: Double
 ) : Parcelable
