@@ -19,5 +19,13 @@
         android:id="@+id/requestFragment"
         android:name="ir.amirhparhizgar.snappboxtask.ui.RequestFragment"
         android:label="fragment_request"
-        tools:layout="@layout/fragment_request" />
+        tools:layout="@layout/fragment_request">
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="boxtask://boxtask.ir/view-request" />
+        <argument
+            android:name="extra_request_json"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

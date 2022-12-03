@@ -2,6 +2,7 @@ package ir.amirhparhizgar.snappboxtask.ui
 
 import android.Manifest
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +14,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mapbox.geojson.Point
 import com.mapbox.maps.Style
 import com.mapbox.maps.dsl.cameraOptions
@@ -34,6 +36,7 @@ import ir.amirhparhizgar.snappboxtask.R
 import ir.amirhparhizgar.snappboxtask.common.collectWithinLifecycle
 import ir.amirhparhizgar.snappboxtask.databinding.FragmentHomeBinding
 import ir.amirhparhizgar.snappboxtask.presentation.HomeViewModel
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -67,11 +70,6 @@ class HomeFragment : Fragment() {
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
         )
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        findNavController().navigate(R.id.action_homeFragment_to_requestFragment)
     }
 
     private fun requestFineLocationPermission() {
@@ -149,6 +147,19 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setMapBoxStyle()
         customizeMapBoxTools()
+
+        logFCMToken()
+    }
+
+    private fun logFCMToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("FCM token:", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            val token = task.result
+            Log.d("FCM token:", token)
+        })
     }
 
     private fun setMapBoxStyle() {
