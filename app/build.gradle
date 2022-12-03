@@ -2,7 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.gms.google-services'
 }
 
@@ -70,6 +72,9 @@ dependencies {
     implementation("com.google.firebase:firebase-core")
     implementation("com.google.firebase:firebase-messaging")
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.0'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.10'
 
     // test dependencies
     testImplementation 'junit:junit:4.13.2'

@@ -72,11 +72,6 @@ class HomeFragment : Fragment() {
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        findNavController().navigate(R.id.action_homeFragment_to_requestFragment)
-    }
-
     private fun requestFineLocationPermission() {
         requestFineLocationPermission.launch(
             Manifest.permission.ACCESS_FINE_LOCATION
