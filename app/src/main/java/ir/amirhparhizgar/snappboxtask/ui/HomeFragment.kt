@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mapbox.geojson.Point
 import com.mapbox.maps.Style
@@ -66,6 +67,11 @@ class HomeFragment : Fragment() {
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        findNavController().navigate(R.id.action_homeFragment_to_requestFragment)
     }
 
     private fun requestFineLocationPermission() {

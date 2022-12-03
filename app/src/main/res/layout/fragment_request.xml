@@ -1,14 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.RequestFragment">
 
-    <FrameLayout
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        mapbox:mapbox_cameraTargetLat="32.6763783"
+        mapbox:mapbox_cameraTargetLng="54.6991712"
+        mapbox:mapbox_cameraZoom="4.0" />
 
-    </FrameLayout>
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/price_button_shape"
+        android:elevation="16dp"
+        android:minWidth="240dp"
+        android:paddingVertical="16dp"
+        android:text="@string/button_price"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:translationZ="4dp"
+        app:layout_anchor="@id/standard_bottom_sheet"
+        app:layout_anchorGravity="center_horizontal|top" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/standard_bottom_sheet"
+        style="@style/BottomSheetDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_fitToContents="true"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="200dp"
+        app:enableEdgeToEdge="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:layout_insetEdge="bottom">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:divider="#0000"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:listitem="@layout/item_destination" />
+
+        <Space
+            android:id="@+id/spacer"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_accept" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:minWidth="240dp"
+            android:text="@string/accept"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_adjust_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/adjust_camera"
+        android:src="@drawable/ic_adjust_camera_bounds"
+        android:translationY="-24dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
