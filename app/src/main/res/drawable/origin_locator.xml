@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/locator_base" />
+
+    <item
+        android:drawable="@drawable/origin_icon"
+        android:bottom="18dp"
+        android:top="0dp"
+        android:right="9dp"
+        android:left="9dp" />
+</layer-list>
