@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.appcompat.content.res.AppCompatResources
 import ir.amirhparhizgar.snappboxtask.R
-import ir.amirhparhizgar.snappboxtask.data.Destination
 import ir.amirhparhizgar.snappboxtask.databinding.ItemDestinationBinding
+import ir.amirhparhizgar.snappboxtask.model.Destination
 
 
 /**

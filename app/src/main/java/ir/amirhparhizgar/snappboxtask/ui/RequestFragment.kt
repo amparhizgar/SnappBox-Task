@@ -1,5 +1,6 @@
 package ir.amirhparhizgar.snappboxtask.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -13,7 +14,6 @@ import android.widget.AdapterView
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.*
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mapbox.geojson.Point
@@ -39,25 +39,28 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.amirhparhizgar.snappboxtask.R
 import ir.amirhparhizgar.snappboxtask.common.FLY_ANIMATION_DURATION
 import ir.amirhparhizgar.snappboxtask.common.toMapBoxPoint
-import ir.amirhparhizgar.snappboxtask.data.Destination
 import ir.amirhparhizgar.snappboxtask.databinding.DestinationLocatorBinding
 import ir.amirhparhizgar.snappboxtask.databinding.FragmentRequestBinding
+import ir.amirhparhizgar.snappboxtask.model.Destination
 import ir.amirhparhizgar.snappboxtask.presentation.RequestViewModel
 
 @AndroidEntryPoint
-class RequestFragment : Fragment() {
+class RequestFragment : ViewBindingFragment<FragmentRequestBinding>() {
 
     private val viewModel: RequestViewModel by viewModels()
-    private var _binding: FragmentRequestBinding? = null
-    private val binding get() = _binding!!
     private val mapView get() = binding.mapView
 
+
+    override fun getViewBindingInflater(): ViewBindingInflater<FragmentRequestBinding> =
+        FragmentRequestBinding::inflate
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRequestBinding.inflate(inflater, container, false)
+        super.onCreateView(inflater, container, savedInstanceState)
         with(binding) {
             tvPrice.doOnLayout {
                 tvPrice.translationY = -tvPrice.measuredHeight.toFloat() / 2
@@ -200,8 +203,7 @@ class RequestFragment : Fragment() {
                 measuredHeight,
                 Bitmap.Config.ARGB_8888
             )
-            val canvas = Canvas(bitmap)
-            draw(canvas)
+            draw(Canvas(bitmap))
             bitmap
         }
     }
@@ -237,10 +239,5 @@ class RequestFragment : Fragment() {
             drawable.draw(canvas)
             bitmap
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

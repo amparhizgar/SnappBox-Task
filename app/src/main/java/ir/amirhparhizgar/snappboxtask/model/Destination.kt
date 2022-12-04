@@ -1,4 +1,4 @@
-package ir.amirhparhizgar.snappboxtask.data
+package ir.amirhparhizgar.snappboxtask.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
