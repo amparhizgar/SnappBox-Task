@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         mapbox:mapbox_cameraTargetLat="32.6763783"
         mapbox:mapbox_cameraTargetLng="54.6991712"
+        android:translationZ="0dp"
         mapbox:mapbox_cameraZoom="4.0" />
 
     <TextView
@@ -42,6 +43,7 @@
         app:behavior_hideable="false"
         app:behavior_peekHeight="200dp"
         app:enableEdgeToEdge="true"
+        android:translationZ="1dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         app:layout_insetEdge="bottom">
 
@@ -54,24 +56,6 @@
             app:layout_constraintTop_toBottomOf="@id/divider"
             tools:listitem="@layout/item_destination" />
 
-        <Space
-            android:id="@+id/spacer"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_accept" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_accept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"
-            android:minWidth="240dp"
-            android:text="@string/accept"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list" />
-
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider"
             android:layout_width="match_parent"
@@ -82,6 +66,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:fitsSystemWindows="true"
+        android:translationZ="100dp">
+
+        <ir.amirhparhizgar.snappboxtask.ui.widget.AcceptButton
+            android:id="@+id/btn_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fitsSystemWindows="true"
+            android:minWidth="240dp"
+            android:minHeight="48dp"
+            android:text="@string/accept"
+            android:textSize="24sp"
+            app:buttonColor="?colorPrimary"
+            app:buttonCornerRadius="24dp"
+            app:buttonProgressColor="@color/blue" />
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_adjust_camera"

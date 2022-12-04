@@ -12,11 +12,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.doOnLayout
+import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mapbox.geojson.Point
 import com.mapbox.maps.EdgeInsets
 import com.mapbox.maps.Style
@@ -75,12 +74,21 @@ class RequestFragment : Fragment() {
             fabAdjustCamera.setOnClickListener {
                 setCameraBoundsToDestinations()
             }
-            ViewCompat.setOnApplyWindowInsetsListener(spacer) { _, insets ->
+            ViewCompat.setOnApplyWindowInsetsListener(standardBottomSheet) { _, insets ->
                 val systemBarInsets =
                     insets.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.systemBars())
-                spacer.minimumHeight = systemBarInsets.bottom
-                spacer.requestLayout()
+                standardBottomSheet.updatePadding(
+                    bottom = systemBarInsets.bottom + btnAccept.measuredHeight
+                            + btnAccept.marginBottom + btnAccept.marginTop
+                )
+                standardBottomSheet.requestLayout()
                 WindowInsetsCompat.CONSUMED
+            }
+            btnAccept.setOnClickListener {
+                requireActivity().finish()
+            }
+            btnAccept.onTimeOut = {
+                findNavController().popBackStack()
             }
         }
 
