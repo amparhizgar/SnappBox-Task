@@ -119,7 +119,6 @@ class HomeFragment : Fragment() {
         viewModel.moveToUserLocationEvent.collectWithinLifecycle(viewLifecycleOwner) {
             moveToUserLocation()
         }
-
         return binding.root
     }
 

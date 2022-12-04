@@ -1,3 +1,7 @@
 <resources>
-
+    <declare-styleable name="AcceptButton">
+        <attr name="buttonColor" format="color" />
+        <attr name="buttonProgressColor" format="color" />
+        <attr name="buttonCornerRadius" format="dimension" />
+    </declare-styleable>
 </resources>
