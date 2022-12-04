@@ -13,8 +13,7 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.withStyledAttributes
 import ir.amirhparhizgar.snappboxtask.R
-import kotlin.math.pow
-import kotlin.math.sqrt
+import java.lang.Integer.max
 
 
 /**
@@ -35,6 +34,8 @@ class AcceptButton @JvmOverloads constructor(
         const val DEFAULT_BUTTON_COLOR: Int = Color.BLACK
         const val DEFAULT_PROGRESS_COLOR: Int = Color.BLUE
         const val DEFAULT_CORNER_Radius: Float = 80f
+        const val DEFAULT_ACCEPT_DELAY: Long = 2_000L
+        const val DEFAULT_TIMEOUT: Long = 30_000L
     }
 
     private var startTimeoutMillis: Long = System.currentTimeMillis()
@@ -43,13 +44,13 @@ class AcceptButton @JvmOverloads constructor(
     private var onTimeOutCalled = false
     private var clipPath = Path()
 
-    var timeOutMillis: Long = 30_000L
+    var timeOutMillis: Long = DEFAULT_TIMEOUT
         set(value) {
             field = value
             onTimeOutCalled = false
             startTimeoutMillis = System.currentTimeMillis()
         }
-    var pressDurationToAcceptMillis = 2_000
+    var acceptDelayMillis = DEFAULT_ACCEPT_DELAY
 
     val buttonPaint = Paint().apply {
         color = buttonColor
@@ -176,16 +177,16 @@ class AcceptButton @JvmOverloads constructor(
 
     private fun drawCircle(canvas: Canvas) {
         val pressingTime = System.currentTimeMillis() - startPressMillis
-        val progress: Float = pressingTime.toFloat() / pressDurationToAcceptMillis
+        val progress: Float = pressingTime.toFloat() / acceptDelayMillis
         val maxRadius =
-            sqrt(measuredHeight.toDouble().pow(2) + measuredWidth.toDouble().pow(2)).toFloat()
+            max(measuredHeight, measuredWidth).toFloat() / 2
         canvas.drawCircle(
             measuredWidth.toFloat() / 2,
             measuredHeight.toFloat() / 2,
             maxRadius * progress,
             progressPaint
         )
-        if (pressingTime < pressDurationToAcceptMillis)
+        if (pressingTime < acceptDelayMillis)
             invalidate()
         else {
             if (!onClickCalled) {
