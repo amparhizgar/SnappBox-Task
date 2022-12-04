@@ -1,10 +1,9 @@
 <resources>
 
-    <style name="BottomSheetDialog">
+    <style name="BottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="shapeAppearance">@style/ShapeAppearance.App.BottomSheet</item>
-        <item name="cardElevation">8dp</item>
-        <item name="android:elevation">8dp</item>
-        <item name="android:translationZ">-2dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:elevation">2dp</item>
     </style>
 
     <style name="ShapeAppearance.App.BottomSheet" parent="ShapeAppearance.MaterialComponents.LargeComponent">

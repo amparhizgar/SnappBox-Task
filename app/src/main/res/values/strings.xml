@@ -2,13 +2,13 @@
     <string name="app_name">SnappBoxTask</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiYW1pcmhwYXJoaXpnYXIiLCJhIjoiY2xiNW9rNGZ3MDhvbjNvcXUwaWtpYWVueCJ9.8JGm4wXquwt4hWEsHxKfgA</string>
     <string name="current_location_button_content_description">current location</string>
-    <string name="ok">Ok</string>
-    <string name="why_location_permission_required">In order to show your location on the map, we require location permission.\nconsider granting the permission for better experience..</string>
-    <string name="why_fine_location_permission_required">Fine location permission is required to improve location precision. Otherwise, the location will be shown as an approximation.</string>
-    <string name="not_now">Not Now</string>
-    <string name="yes">Yes</string>
-    <string name="button_price">35,000</string>
-    <string name="accept">Accept The Request</string>
-    <string name="adjust_camera">adjust camera bounds</string>
-    <string name="destination">destination</string>
+    <string name="ok">باشه</string>
+    <string name="why_location_permission_required">برای این که مکان شما را روی نقشه نشان بدهیم، به دسترسی مکان نیاز داریم. برای تجربهٔ بهتر از برنامه دسترسی مکان را فعال کنید…</string>
+    <string name="why_fine_location_permission_required">برای نشان دادن مکان دقیق شما روی نفشه با دسترسی دقیق مکان نیاز داریم. اگر اجازه ندهید مکان شما به صورت تقریبی نشان داده خواهد شد.</string>
+    <string name="not_now">الآن نه</string>
+    <string name="yes">بله</string>
+    <string name="button_price">۳۵۰٬۰۰۰ ریال</string>
+    <string name="accept">قبول درخواست</string>
+    <string name="adjust_camera_content_description">adjust camera bounds</string>
+    <string name="destination_content_description">destination</string>
 </resources>

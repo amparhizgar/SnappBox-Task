@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:contentDescription="@string/destination"
+        android:contentDescription="@string/destination_content_description"
         android:src="@drawable/locator_base" />
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_marginTop="3dp"
         android:background="@drawable/destination_icon"
         android:gravity="center"
-        android:textColor="?colorOnSecondary"
+        android:textColor="?colorOnPrimary"
         android:textSize="20dp"
         android:textStyle="bold"
         android:translationZ="1dp"
