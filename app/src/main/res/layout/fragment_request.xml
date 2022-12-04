@@ -23,7 +23,8 @@
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="16dp"
         android:background="@drawable/price_button_shape"
-        android:elevation="16dp"
+        android:textColor="?colorOnPrimary"
+        android:elevation="4dp"
         android:minWidth="240dp"
         android:paddingVertical="16dp"
         android:text="@string/button_price"
@@ -37,6 +38,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/standard_bottom_sheet"
         style="@style/BottomSheetDialog"
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:behavior_fitToContents="true"
@@ -72,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:fitsSystemWindows="true"
-        android:translationZ="100dp">
+        android:translationZ="10dp">
 
         <ir.amirhparhizgar.snappboxtask.ui.widget.AcceptButton
             android:id="@+id/btn_accept"
@@ -86,7 +88,7 @@
             android:textSize="24sp"
             app:buttonColor="?colorPrimary"
             app:buttonCornerRadius="24dp"
-            app:buttonProgressColor="@color/blue" />
+            app:buttonProgressColor="@color/black_blue" />
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -96,8 +98,8 @@
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:contentDescription="@string/adjust_camera"
+        android:contentDescription="@string/adjust_camera_content_description"
         android:src="@drawable/ic_adjust_camera_bounds"
-        android:translationY="-24dp" />
+        android:translationY="-2dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

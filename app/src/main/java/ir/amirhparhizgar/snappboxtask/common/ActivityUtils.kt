@@ -1,8 +1,10 @@
 package ir.amirhparhizgar.snappboxtask.common
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.view.WindowManager
+import java.util.*
 
 
 fun Activity.showOnKeyGuard() {
@@ -16,4 +18,14 @@ fun Activity.showOnKeyGuard() {
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
     )
+}
+
+fun Context.setAppLocale(): Context {
+    val locale = Locale("fa", "IR")
+    Locale.setDefault(locale)
+    with(resources.configuration) {
+        setLocale(locale)
+        setLayoutDirection(locale)
+        return createConfigurationContext(this)
+    }
 }
