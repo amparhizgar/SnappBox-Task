@@ -2,7 +2,6 @@ package ir.amirhparhizgar.snappboxtask.ui
 
 import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,8 @@ import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.messaging.FirebaseMessaging
 import com.mapbox.geojson.Point
 import com.mapbox.maps.Style
 import com.mapbox.maps.dsl.cameraOptions
@@ -40,11 +36,10 @@ import ir.amirhparhizgar.snappboxtask.presentation.HomeViewModel
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : ViewBindingFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by viewModels()
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+
     private val mapView get() = binding.mapView
 
     private val requestBothLocationPermissions: ActivityResultLauncher<Array<String>> =
@@ -63,6 +58,9 @@ class HomeFragment : Fragment() {
         ) {
             // no action is needed
         }
+
+    override fun getViewBindingInflater(): ViewBindingInflater<FragmentHomeBinding> =
+        FragmentHomeBinding::inflate
 
     private fun requestBothLocationPermissions() {
         requestBothLocationPermissions.launch(
@@ -84,7 +82,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        super.onCreateView(inflater, container, savedInstanceState)
         binding.fabCurrentLocation.setOnClickListener {
             viewModel.onZoomToLocationClicked(
                 shouldShowRationale = {
@@ -148,18 +146,7 @@ class HomeFragment : Fragment() {
         setMapBoxStyle()
         customizeMapBoxTools()
 
-        logFCMToken()
-    }
-
-    private fun logFCMToken() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("FCM token:", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-            val token = task.result
-            Log.d("FCM token:", token)
-        })
+        viewModel.logFCMToken()
     }
 
     private fun setMapBoxStyle() {
@@ -213,10 +200,5 @@ class HomeFragment : Fragment() {
             }
             .setNeutralButton(resources.getString(R.string.not_now), null)
             .show()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

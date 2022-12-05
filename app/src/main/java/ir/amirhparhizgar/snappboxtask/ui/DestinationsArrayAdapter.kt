@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.appcompat.content.res.AppCompatResources
 import ir.amirhparhizgar.snappboxtask.R
-import ir.amirhparhizgar.snappboxtask.data.Destination
 import ir.amirhparhizgar.snappboxtask.databinding.ItemDestinationBinding
+import ir.amirhparhizgar.snappboxtask.model.Destination
 
 
 /**
@@ -16,11 +16,6 @@ import ir.amirhparhizgar.snappboxtask.databinding.ItemDestinationBinding
  */
 class DestinationsArrayAdapter(data: ArrayList<Destination>, context: Context) :
     ArrayAdapter<Destination>(context, R.layout.item_destination, data) {
-    var mContext: Context
-
-    init {
-        mContext = context
-    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)

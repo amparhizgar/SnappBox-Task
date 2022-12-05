@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.amirhparhizgar.snappboxtask.data.Request
+import ir.amirhparhizgar.snappboxtask.model.Request
 import ir.amirhparhizgar.snappboxtask.ui.RequestFragmentArgs
 import javax.inject.Inject
 

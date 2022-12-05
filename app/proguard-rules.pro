@@ -20,4 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keepnames class ir.amirhparhizgar.snappboxtask.data.*
+-keepnames class ir.amirhparhizgar.snappboxtask.model.*
