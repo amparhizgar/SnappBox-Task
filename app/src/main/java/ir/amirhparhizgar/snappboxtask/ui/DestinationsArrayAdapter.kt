@@ -16,11 +16,6 @@ import ir.amirhparhizgar.snappboxtask.model.Destination
  */
 class DestinationsArrayAdapter(data: ArrayList<Destination>, context: Context) :
     ArrayAdapter<Destination>(context, R.layout.item_destination, data) {
-    var mContext: Context
-
-    init {
-        mContext = context
-    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)

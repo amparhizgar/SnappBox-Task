@@ -87,6 +87,7 @@
             android:text="@string/accept"
             android:textSize="24sp"
             app:buttonColor="?colorPrimary"
+            android:textColor="?colorOnPrimary"
             app:buttonCornerRadius="24dp"
             app:buttonProgressColor="@color/black_blue" />
     </FrameLayout>
