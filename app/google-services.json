@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "293410545248",
+    "project_id": "snappbox-task-4534",
+    "storage_bucket": "snappbox-task-4534.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293410545248:android:309db4975375120effad05",
+        "android_client_info": {
+          "package_name": "ir.amirhparhizgar.snappboxtask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293410545248-5n3n8267i31l7p10ubv1teqq987p7ie1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPRvQgVcIQXauL26UY0v8tBScCi3JuF3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293410545248-5n3n8267i31l7p10ubv1teqq987p7ie1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

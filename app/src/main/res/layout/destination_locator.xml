@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="48dp"
+    android:layout_height="48dp">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/destination_content_description"
+        android:src="@drawable/locator_base" />
+
+    <TextView
+        android:id="@+id/tv_destination_index"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/destination_icon"
+        android:gravity="center"
+        android:textColor="?colorOnPrimary"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:translationZ="1dp"
+        tools:ignore="SpUsage"
+        tools:text="1" />
+</FrameLayout>
