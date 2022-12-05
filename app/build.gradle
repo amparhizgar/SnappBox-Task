@@ -27,7 +27,7 @@ android {
             buildConfigField 'String', "MapboxAccessToken", MAPBOX_DOWNLOADS_TOKEN
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', "MapboxAccessToken", MAPBOX_DOWNLOADS_TOKEN
         }
